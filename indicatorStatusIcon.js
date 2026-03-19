@@ -246,6 +246,10 @@ class IndicatorStatusIcon extends BaseStatusIcon {
     _init(indicator) {
         super._init(0.5, indicator.accessibleName,
             new AppIndicator.IconActor(indicator, DEFAULT_ICON_SIZE));
+
+        // Disable upstream's click gesture and fall back to vfunc_button_press_event etc.
+        this._clickGesture?.set_enabled(false);
+
         this._indicator = indicator;
 
         this._lastClickTime = -1;
